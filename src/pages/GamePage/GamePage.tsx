@@ -1,10 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useGameBoard } from "../../hooks/useGameBoard";
 import styles from "./GamePage.module.css";
-import { AppLogo } from "../../components/AppLogo";
+import { AppLogo } from "../../components/AppLogo/AppLogo";
+import { FramedBox } from "../../components/FramedBox/FramedBox";
 
 export const GamePage = () => {
   const { gameBoard, loading, error, fetchGameBoard } = useGameBoard();
+  const [balance] = useState(0);
+
+  const maxPrize = useMemo(() => {
+    if (!gameBoard) return 0;
+    const winningCards = gameBoard?.board.flat().filter((card) => card.isWinning);
+    return winningCards?.length * gameBoard.amountPerWin;
+  }, [gameBoard]);
 
   useEffect(() => {
     fetchGameBoard();
@@ -15,8 +23,16 @@ export const GamePage = () => {
       {loading && <div className="loader">Loading...</div>}
       {error && <div className="error">An error has occured, please try again later</div>}
       {gameBoard && (
-        <div>
+        <div className={styles["game-page-content"]}>
           <AppLogo />
+          <div className={styles["game-board-header"]}>
+            <FramedBox title="Balance">
+              <div className={styles["balance-display"]}>{balance}</div>
+            </FramedBox>
+            <FramedBox title="Max Prize" frameColor="white">
+              <div className={styles["max-prize-display"]}>{maxPrize}</div>
+            </FramedBox>
+          </div>
         </div>
       )}
     </div>

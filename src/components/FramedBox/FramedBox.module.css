@@ -1,0 +1,31 @@
+.green {
+  --frame-color: var(--emerald);
+  --title-color: var(--white);
+}
+.white {
+  --frame-color: var(--white);
+  --title-color: var(--deep-forest);
+}
+
+.framed-box-title {
+  color: var(--title-color);
+  background-color: var(--frame-color);
+  text-transform: uppercase;
+  border-radius: var(--radius-2xl) var(--radius-2xl) var(--radius-none) var(--radius-none);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1;
+  width: fit-content;
+  padding: var(--space-1) var(--space-7);
+}
+
+.framed-box-content {
+  color: var(--white);
+  background-color: var(--deep-forest);
+  border-radius: var(--radius-full);
+  text-align: center;
+  font-weight: var(--font-weight-semibold);
+  outline: var(--frame-color) 5px solid;
+}

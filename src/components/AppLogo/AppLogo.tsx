@@ -1,6 +1,8 @@
+import styles from "./AppLogo.module.css";
+
 export const AppLogo = () => {
   return (
-    <div>
+    <div className={styles["app-logo"]}>
       <h1>LUCKYNMINER</h1>
     </div>
   );
