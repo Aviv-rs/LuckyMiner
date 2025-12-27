@@ -1,38 +1,5 @@
 :root {
   /* hsl (fallback color) */
-  --bg-dark: hsl(220 59% 91%);
-  --bg: hsl(220 100% 97%);
-  --bg-light: hsl(220 100% 100%);
-  --text: hsl(226 85% 7%);
-  --text-muted: hsl(220 26% 31%);
-  --highlight: hsl(220 100% 100%);
-  --border: hsl(220 19% 53%);
-  --border-muted: hsl(220 27% 65%);
-  --primary: hsl(221 49% 33%);
-  --secondary: hsl(44 100% 14%);
-  --danger: hsl(9 21% 41%);
-  --warning: hsl(52 23% 34%);
-  --success: hsl(147 19% 36%);
-  --info: hsl(217 22% 41%);
-  /* oklch */
-  --bg-dark: oklch(0.92 0.025 264);
-  --bg: oklch(0.96 0.025 264);
-  --bg-light: oklch(1 0.025 264);
-  --text: oklch(0.15 0.05 264);
-  --text-muted: oklch(0.4 0.05 264);
-  --highlight: oklch(1 0.05 264);
-  --border: oklch(0.6 0.05 264);
-  --border-muted: oklch(0.7 0.05 264);
-  --primary: oklch(0.4 0.1 264);
-  --secondary: oklch(0.4 0.1 84);
-  --danger: oklch(0.5 0.05 30);
-  --warning: oklch(0.5 0.05 100);
-  --success: oklch(0.5 0.05 160);
-  --info: oklch(0.5 0.05 260);
-}
-
-body.dark {
-  /* hsl (fallback color) */
   --bg-dark: hsl(228 79% 2%);
   --bg: hsl(222 55% 5%);
   --bg-light: hsl(220 35% 10%);
@@ -62,4 +29,53 @@ body.dark {
   --warning: oklch(0.7 0.05 100);
   --success: oklch(0.7 0.05 160);
   --info: oklch(0.7 0.05 260);
+
+  /* Game Board Colors */
+  --amber-flame: hsla(44, 98%, 50%, 1);
+  --amber-glow: hsla(37, 100%, 50%, 1);
+  --space-indigo: hsla(233, 24%, 20%, 1);
+  --pale-slate: hsla(220, 7%, 68%, 1);
+  --red: hsla(0, 100%, 50%, 1);
+  --forest-green: hsla(134, 95%, 31%, 1);
+  --deep-forest: hsla(154, 100%, 14%, 1);
+  --bright-amber: hsla(49, 97%, 54%, 1);
+  --white: hsla(0, 0%, 100%, 1);
+  --emerald: hsla(152, 87%, 46%, 1);
+  --blood-red: hsla(0, 88%, 30%, 1);
+  --strawberry-red: hsla(1, 83%, 61%, 1);
+  --game-card-gradient: linear-gradient(to bottom, var(--amber-glow), var(--amber-flame));
+  --lose-card-gradient: linear-gradient(to bottom, var(--strawberry-red), var(--blood-red));
+}
+
+body.light {
+  /* hsl (fallback color) */
+  --bg-dark: hsl(220 59% 91%);
+  --bg: hsl(220 100% 97%);
+  --bg-light: hsl(220 100% 100%);
+  --text: hsl(226 85% 7%);
+  --text-muted: hsl(220 26% 31%);
+  --highlight: hsl(220 100% 100%);
+  --border: hsl(220 19% 53%);
+  --border-muted: hsl(220 27% 65%);
+  --primary: hsl(221 49% 33%);
+  --secondary: hsl(44 100% 14%);
+  --danger: hsl(9 21% 41%);
+  --warning: hsl(52 23% 34%);
+  --success: hsl(147 19% 36%);
+  --info: hsl(217 22% 41%);
+  /* oklch */
+  --bg-dark: oklch(0.92 0.025 264);
+  --bg: oklch(0.96 0.025 264);
+  --bg-light: oklch(1 0.025 264);
+  --text: oklch(0.15 0.05 264);
+  --text-muted: oklch(0.4 0.05 264);
+  --highlight: oklch(1 0.05 264);
+  --border: oklch(0.6 0.05 264);
+  --border-muted: oklch(0.7 0.05 264);
+  --primary: oklch(0.4 0.1 264);
+  --secondary: oklch(0.4 0.1 84);
+  --danger: oklch(0.5 0.05 30);
+  --warning: oklch(0.5 0.05 100);
+  --success: oklch(0.5 0.05 160);
+  --info: oklch(0.5 0.05 260);
 }
