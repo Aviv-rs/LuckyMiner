@@ -1,0 +1,12 @@
+.game-card {
+  width: 100%;
+  height: 100%;
+  background: var(--game-card-gradient);
+  box-shadow:
+    inset 0px 1px 4px 0 var(--white),
+    3px 3px 4px 0 rgb(0 0 0 / 90%);
+  border-radius: var(--radius-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

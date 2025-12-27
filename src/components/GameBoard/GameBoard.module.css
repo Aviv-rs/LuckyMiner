@@ -1,0 +1,8 @@
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: var(--space-15);
+  width: 100%;
+  aspect-ratio: 1;
+}

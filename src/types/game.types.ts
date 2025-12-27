@@ -1,5 +1,8 @@
-export type GameBoardDto = { isWinning: boolean }[][];
-export type GameBoard = { isWinning: boolean; isExposed: boolean }[][];
+export type GameCardDto = { isWinning: boolean };
+export type GameCard = { isWinning: boolean; isExposed: boolean };
+
+export type GameBoardDto = GameCardDto[][];
+export type GameBoard = GameCard[][];
 
 export type GameDto = {
   board: GameBoardDto;
