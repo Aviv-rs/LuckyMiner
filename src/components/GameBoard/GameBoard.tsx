@@ -6,7 +6,7 @@ export const GameBoard = ({ gameBoard }: { gameBoard: GameBoardType }) => {
   return (
     <div className={styles["game-board"]}>
       {gameBoard.flat().map((gameCard) => (
-        <GameCard gameCard={gameCard} />
+        <GameCard key={gameCard.id} gameCard={gameCard} />
       ))}
     </div>
   );

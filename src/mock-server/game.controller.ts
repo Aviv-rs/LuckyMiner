@@ -1,4 +1,5 @@
 import type { GameDto } from "../types/game.types";
+import { generateUniqueId } from "../utils/generate.utils";
 const gameBoardSize = 3;
 
 export const gameController = {
@@ -7,7 +8,10 @@ export const gameController = {
   },
   _generateBoard: () => {
     return Array.from({ length: gameBoardSize }, () =>
-      Array.from({ length: gameBoardSize }, () => ({ isWinning: gameController._getRandomBoolean() })),
+      Array.from({ length: gameBoardSize }, () => ({
+        id: generateUniqueId(),
+        isWinning: gameController._getRandomBoolean(),
+      })),
     );
   },
   getGameBoard: async (): Promise<GameDto> => {

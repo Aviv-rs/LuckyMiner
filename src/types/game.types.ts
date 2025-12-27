@@ -1,5 +1,10 @@
-export type GameCardDto = { isWinning: boolean };
-export type GameCard = { isWinning: boolean; isExposed: boolean };
+export interface GameCardDto {
+  id: number;
+  isWinning: boolean;
+}
+export interface GameCard extends GameCardDto {
+  isExposed: boolean;
+}
 
 export type GameBoardDto = GameCardDto[][];
 export type GameBoard = GameCard[][];
