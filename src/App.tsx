@@ -1,8 +1,7 @@
-import { GamePage } from "./pages/GamePage";
+import { GamePage } from "./pages/GamePage/GamePage";
 export default function App() {
   return (
     <>
-      <h1>Lucky Miner</h1>
       <GamePage />
     </>
   );
