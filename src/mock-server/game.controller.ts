@@ -17,7 +17,7 @@ export const gameController = {
           board: gameController._generateBoard(),
           amountPerWin: 10,
         });
-      }, 1000);
+      }, 0);
     });
   },
 };
