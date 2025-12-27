@@ -6,7 +6,7 @@ import { FramedBox } from "../../components/FramedBox/FramedBox";
 import { GameBoard } from "../../components/GameBoard/GameBoard";
 
 export const GamePage = () => {
-  const { gameBoard, loading, error, fetchGameBoard } = useGameBoard();
+  const { gameBoard, loading, error, fetchGameBoard, setGameCardExposed } = useGameBoard();
   const [balance] = useState(0);
 
   const maxPrize = useMemo(() => {
@@ -33,7 +33,7 @@ export const GamePage = () => {
             </FramedBox>
           </div>
           <FramedBox contentFrameStyle="square">
-            <GameBoard gameBoard={gameBoard.board} />
+            <GameBoard gameBoard={gameBoard.board} setGameCardExposed={setGameCardExposed} />
           </FramedBox>
         </div>
       )}
