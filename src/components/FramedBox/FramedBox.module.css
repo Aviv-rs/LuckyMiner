@@ -1,3 +1,7 @@
+.framed-box {
+  --border-width: 5px;
+}
+
 .green {
   --frame-color: var(--emerald);
   --title-color: var(--white);
@@ -5,6 +9,14 @@
 .white {
   --frame-color: var(--white);
   --title-color: var(--deep-forest);
+}
+
+.rounded {
+  border-radius: var(--radius-full);
+}
+
+.square {
+  border-radius: var(--radius-lg);
 }
 
 .framed-box-title {
@@ -19,13 +31,19 @@
   line-height: 1;
   width: fit-content;
   padding: var(--space-1) var(--space-7);
+  transform: translateY(var(--border-width));
 }
 
 .framed-box-content {
   color: var(--white);
   background-color: var(--deep-forest);
-  border-radius: var(--radius-full);
   text-align: center;
   font-weight: var(--font-weight-semibold);
-  outline: var(--frame-color) 5px solid;
+  border: var(--frame-color) var(--border-width) solid;
+  &.rounded {
+    padding: var(--space-1);
+  }
+  &.square {
+    padding: var(--space-2);
+  }
 }
