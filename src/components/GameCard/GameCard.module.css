@@ -1,12 +1,185 @@
+.game-card-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
 .game-card {
   width: 100%;
   height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.game-card-front,
+.game-card-back {
   background: var(--game-card-gradient);
   box-shadow:
-    inset 0px 1px 4px 0 var(--white),
-    3px 3px 4px 0 rgb(0 0 0 / 90%);
+    inset var(--highlight-md),
+    var(--shadow-md-xy);
   border-radius: var(--radius-base);
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+}
+
+.game-card-back {
+  transform: rotateY(180deg);
+}
+
+.game-card-exposed {
+  transform: scale(1) rotateY(0deg);
+  animation: card-flip 0.8s ease-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  pointer-events: none;
+}
+
+.game-card-winning {
+  animation: pop 0.6s ease-out forwards;
+}
+
+.game-card-content-winning {
+  transform: scale(0) rotateY(180deg);
+  transform-origin: center;
+  animation: pop-in 0.3s ease-out;
+  animation-delay: 0.3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    bottom: -50%;
+    width: 100%;
+    animation: shine-sweep 0.7s ease-out 0.7s;
+    border-radius: var(--radius-base);
+    z-index: 1;
+    transform: rotate(45deg) translateX(-200%);
+    opacity: 0.8;
+    background: linear-gradient(
+      to right,
+      hsla(0, 0%, 100%, 0.05) 0%,
+      hsla(0, 0%, 100%, 0.1) 10%,
+      hsla(0, 0%, 100%, 0.3) 25%,
+      hsla(0, 0%, 100%, 0.5) 50%,
+      hsla(0, 0%, 100%, 0.3) 75%,
+      hsla(0, 0%, 100%, 0.1) 90%,
+      hsla(0, 0%, 100%, 0.05) 100%
+    );
+  }
+}
+
+.game-card-content-losing {
+  background: var(--lose-card-gradient);
+  border-radius: var(--radius-2xl);
+  box-shadow: inset var(--shadow-md-y);
+  position: relative;
+  overflow: visible;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -5px;
+    opacity: 0;
+    animation: fade-in 0.5s ease-out forwards;
+    animation-delay: 0.5s;
+    border: 15px solid var(--blood-red-light);
+    border-radius: var(--radius-2xl);
+    box-shadow:
+      0 0 10px var(--blood-red),
+      0 0 30px var(--blood-red),
+      inset 0 0 10px var(--blood-red),
+      inset 0 0 30px var(--blood-red);
+    filter: url(#flame);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    inset: -2px;
+    opacity: 0;
+    animation: fade-in 0.5s ease-out forwards;
+    animation-delay: 0.5s;
+    border: 5px solid hsla(0, 0%, 100%, 0.9);
+    filter: url(#flame) blur(1.5px);
+    border-radius: var(--radius-2xl);
+  }
+}
+
+@keyframes shine-sweep {
+  0% {
+    transform: rotate(45deg) translateX(-200%);
+  }
+
+  100% {
+    transform: rotate(45deg) translateX(200%);
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1) rotateY(180deg);
+    transform-origin: center;
+    z-index: 2;
+  }
+
+  50% {
+    transform: scale(1.2) rotateY(180deg);
+    transform-origin: center;
+    z-index: 2;
+  }
+
+  100% {
+    transform: scale(1) rotateY(180deg);
+    transform-origin: center;
+    z-index: 0;
+  }
+}
+
+@keyframes card-flip {
+  0% {
+    z-index: 2;
+    transform: rotateY(0deg);
+  }
+
+  50% {
+    z-index: 2;
+    transform: rotateY(180deg);
+  }
+
+  100% {
+    z-index: 1;
+    transform: rotateY(180deg);
+  }
+}
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0) rotateY(180deg);
+  }
+
+  50% {
+    transform: scale(1.2) rotateY(180deg);
+  }
+
+  100% {
+    transform: scale(1) rotateY(180deg);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
