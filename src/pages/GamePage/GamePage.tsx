@@ -7,6 +7,7 @@ import { GameBoard } from "../../components/GameBoard/GameBoard";
 import type { GameStatus } from "../../types/game.types";
 import { BaseButton } from "../../components/BaseButton/BaseButton";
 import { CoinIcon } from "../../components/CoinIcon/CoinIcon";
+import { startViewTransition } from "../../utils/dom.utils";
 
 export const GamePage = () => {
   const { gameBoard, loading, error, setGameCardExposed, resetGameBoard, exposedCards, fetchGameBoard } =
@@ -43,7 +44,7 @@ export const GamePage = () => {
       case "cashed-out":
       case "lose":
         return (
-          <BaseButton fullWidth onClick={resetGameBoard}>
+          <BaseButton fullWidth onClick={() => startViewTransition(resetGameBoard)}>
             Play Again
           </BaseButton>
         );
