@@ -1,11 +1,12 @@
-import { useCallback, useState, useMemo } from "react";
-import type { Game } from "../types/game.types";
+import { useCallback, useState, useMemo, useRef } from "react";
+import type { Game, GameCard } from "../types/game.types";
 import { gameApi } from "../api/game.api";
 
 export const useGameBoard = () => {
   const [gameBoard, setGameBoard] = useState<Game | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const exposedCards = useRef<Set<GameCard>>(new Set());
 
   const fetchGameBoard = useCallback(
     async (forceRefresh: boolean = false) => {
@@ -43,7 +44,9 @@ export const useGameBoard = () => {
         const [cardRow, cardColumn] = cardPositionMap.get(cardId) || [];
         if (typeof cardRow !== "number" || typeof cardColumn !== "number" || !prevGameState) return prevGameState;
         const board = [...prevGameState.board];
-        board[cardRow][cardColumn].isExposed = true;
+        const card = board[cardRow][cardColumn];
+        card.isExposed = true;
+        exposedCards.current.add(card);
         return {
           ...prevGameState,
           board,
@@ -53,5 +56,10 @@ export const useGameBoard = () => {
     [cardPositionMap],
   );
 
-  return { gameBoard, loading, error, fetchGameBoard, setGameCardExposed };
+  const resetGameBoard = useCallback(() => {
+    fetchGameBoard(true);
+    exposedCards.current.clear();
+  }, [fetchGameBoard, exposedCards]);
+
+  return { gameBoard, loading, error, fetchGameBoard, setGameCardExposed, exposedCards, resetGameBoard };
 };
