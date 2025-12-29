@@ -14,7 +14,11 @@ export const GameCard = ({ gameCard, onClick }: { gameCard: GameCardType; onClic
         >
           {gameCard.isExposed && (
             <div
-              className={gameCard.isWinning ? styles["game-card-content-winning"] : styles["game-card-content-losing"]}
+              className={
+                gameCard.isWinning
+                  ? `${styles["game-card-content-winning"]} ${styles["shine-sweep"]}`
+                  : styles["game-card-content-losing"]
+              }
             >
               {gameCard.isWinning ? <CrownIcon /> : <BombIcon />}
             </div>
