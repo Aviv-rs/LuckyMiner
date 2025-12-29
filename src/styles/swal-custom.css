@@ -87,29 +87,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2);
-  position: relative;
-  height: 200px;
-  overflow: hidden;
+}
+
+.animated-coin {
+  width: 100px;
+  height: 100px;
 }
 
 .animated-coin-amount {
   font-size: var(--font-size-5xl);
   font-weight: var(--font-weight-semibold);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-175%, -50%);
-  z-index: 1;
-}
-
-.animated-coin {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-40%, -50%);
-  width: 80%;
-  height: 80%;
 }
 
 .cash-out-modal-subtitle {
@@ -117,6 +104,5 @@
   font-weight: var(--font-weight-semibold);
   text-transform: uppercase;
   margin-bottom: var(--space-4);
-  margin-bottom: 0;
   color: var(--secondary);
 }
