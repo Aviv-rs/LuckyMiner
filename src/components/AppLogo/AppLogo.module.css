@@ -1,6 +1,11 @@
 .app-logo {
-  font-weight: var(--font-weight-black);
-  text-transform: uppercase;
-  text-align: center;
-  font-size: var(--font-size-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.logo-image {
+  max-width: 100%;
+  height: auto;
 }
