@@ -6,6 +6,7 @@ import { FramedBox } from "../../components/FramedBox/FramedBox";
 import { GameBoard } from "../../components/GameBoard/GameBoard";
 import type { GameStatus } from "../../types/game.types";
 import { BaseButton } from "../../components/BaseButton/BaseButton";
+import { CoinIcon } from "../../components/CoinIcon/CoinIcon";
 
 export const GamePage = () => {
   const { gameBoard, loading, error, setGameCardExposed, resetGameBoard, exposedCards, fetchGameBoard } =
@@ -67,9 +68,11 @@ export const GamePage = () => {
         <div className={styles["game-page-content"]}>
           <AppLogo />
           <div className={styles["game-board-header"]}>
-            <FramedBox title="Balance">{balance}</FramedBox>
+            <FramedBox title="Balance">
+              <CoinIcon /> {balance}
+            </FramedBox>
             <FramedBox title="Max Prize" frameColor="white">
-              {maxPrize}
+              <CoinIcon /> {maxPrize}
             </FramedBox>
           </div>
           <FramedBox contentFrameStyle="square">

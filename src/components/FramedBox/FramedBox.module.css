@@ -40,6 +40,11 @@
   text-align: center;
   font-weight: var(--font-weight-semibold);
   border: var(--frame-color) var(--border-width) solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-1);
+
   &.rounded {
     padding: var(--space-1);
   }
