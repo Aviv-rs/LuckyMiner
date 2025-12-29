@@ -4,6 +4,7 @@ import { generateRandomNumberInRange, generateUniqueId } from "../utils/generate
 const gameBoardSize = 3;
 const minLosingCardsCount = 1;
 const maxLosingCardsCount = 3;
+const amountPerWin = 100;
 
 export const gameController = {
   _getRandomBoolean: () => {
@@ -36,7 +37,7 @@ export const gameController = {
       setTimeout(() => {
         resolve({
           board: gameController._generateBoard(),
-          amountPerWin: 10,
+          amountPerWin,
         });
       }, 0);
     });
