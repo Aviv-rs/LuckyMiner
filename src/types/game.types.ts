@@ -18,3 +18,5 @@ export type Game = {
   board: GameBoard;
   amountPerWin: number;
 };
+
+export type GameStatus = "cashed-out" | "lose" | "in-progress" | "first-round";
