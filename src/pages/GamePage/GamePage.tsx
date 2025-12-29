@@ -1,38 +1,61 @@
-import { useEffect, useMemo } from "react";
+import { useCallback, useEffect } from "react";
 import { useGameBoard } from "../../hooks/useGameBoard";
 import styles from "./GamePage.module.css";
 import { AppLogo } from "../../components/AppLogo/AppLogo";
 import { FramedBox } from "../../components/FramedBox/FramedBox";
 import { GameBoard } from "../../components/GameBoard/GameBoard";
-import type { GameStatus } from "../../types/game.types";
 import { BaseButton } from "../../components/BaseButton/BaseButton";
 import { CoinIcon } from "../../components/CoinIcon/CoinIcon";
 import { startViewTransition } from "../../utils/dom.utils";
+import { useSwalModal } from "../../hooks/useModal";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import coinAnimation from "../../assets/lotties/coin_animation.lottie?url";
 
 export const GamePage = () => {
-  const { gameBoard, loading, error, setGameCardExposed, resetGameBoard, exposedCards, fetchGameBoard } =
-    useGameBoard();
+  const {
+    gameBoard,
+    loading,
+    error,
+    setGameCardExposed,
+    resetGameBoard,
+    gameStatus,
+    fetchGameBoard,
+    maxPrize,
+    balance,
+  } = useGameBoard();
 
-  const maxPrize = useMemo(() => {
-    if (!gameBoard) return 0;
-    return gameBoard.board.flat().filter((card) => card.isWinning).length * gameBoard.amountPerWin;
-  }, [gameBoard]);
+  const { showModal } = useSwalModal();
 
-  const balance: number = useMemo<number>(() => {
-    if (!gameBoard || !exposedCards.current.size) return 0;
-    const exposedLosingCards = Array.from(exposedCards.current).filter((card) => !card.isWinning);
-    if (exposedLosingCards.length > 0) return 0;
-    return exposedCards.current.size * gameBoard.amountPerWin;
-  }, [gameBoard, exposedCards]);
+  const showCashOutModal = useCallback(
+    (remainingPrize: number) => {
+      return showModal({
+        title: "Are you sure?",
+        html: (
+          <>
+            <p className="cash-out-modal-subtitle">You can still win:</p>
+            <div className="animated-coin-wrapper">
+              <span className="animated-coin-amount">{remainingPrize}</span>
+              <DotLottieReact className="animated-coin" src={coinAnimation} loop autoplay />
+            </div>
+          </>
+        ),
+        showCloseButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Cash Out",
+        cancelButtonText: "Continue Playing",
+      });
+    },
+    [showModal],
+  );
 
-  const gameStatus = useMemo<GameStatus>(() => {
-    if (!gameBoard) return "first-round";
-    const exposedLosingCards = Array.from(exposedCards.current).filter((card) => !card.isWinning);
-    if (exposedLosingCards.length > 0) return "lose";
-    else if (balance === 0 && exposedCards.current.size > 0) return "cashed-out";
-    else if (exposedCards.current.size > 0) return "in-progress";
-    else return "first-round";
-  }, [gameBoard, exposedCards, balance]);
+  const handleCashOut = async () => {
+    if (gameStatus !== "in-progress") return;
+    const remainingPrize = maxPrize - balance;
+    const result = await showCashOutModal(remainingPrize);
+    if (result.isConfirmed) {
+      startViewTransition(resetGameBoard);
+    }
+  };
 
   const handleGameCardExposed = (cardId: number) => {
     if (gameStatus === "lose" || gameStatus === "cashed-out") return;
@@ -50,7 +73,7 @@ export const GamePage = () => {
         );
       case "in-progress":
         return (
-          <BaseButton variant="secondary" fullWidth onClick={() => {}}>
+          <BaseButton variant="secondary" fullWidth onClick={handleCashOut}>
             Cash Out
           </BaseButton>
         );

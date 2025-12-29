@@ -1,0 +1,122 @@
+/* styles/swal-custom.css */
+.swal2-popup {
+  background-color: var(--bg-dark) !important;
+  color: var(--text) !important;
+  border-radius: var(--radius-3xl) !important;
+  padding: var(--space-6) !important;
+  font-family: inherit !important;
+}
+
+.swal2-title {
+  color: var(--text) !important;
+  font-size: var(--font-size-2xl) !important;
+  font-weight: var(--font-weight-extrabold) !important;
+  text-transform: uppercase !important;
+  margin-bottom: var(--space-4) !important;
+}
+
+.swal2-html-container {
+  color: var(--text) !important;
+  font-size: var(--font-size-base) !important;
+}
+
+/* Confirm button (Cash Out) - matches primary variant */
+.swal2-confirm {
+  background-color: var(--emerald) !important;
+  color: var(--white) !important;
+  border: none !important;
+  border-radius: var(--radius-3xl) !important;
+  padding: var(--space-2) var(--space-4) !important;
+  font-size: var(--font-size-base) !important;
+  font-weight: var(--font-weight-semibold) !important;
+  text-transform: uppercase !important;
+  box-shadow:
+    var(--highlight-md) inset,
+    var(--shadow-md-y) inset !important;
+  transition: all var(--transition-medium) !important;
+  height: 3rem !important;
+  min-width: 120px !important;
+}
+
+.swal2-confirm:hover {
+  filter: brightness(1.1) !important;
+}
+
+.swal2-confirm:active {
+  box-shadow:
+    var(--highlight-md) inset,
+    var(--shadow-gray-light) inset !important;
+  transform: translateY(3px) !important;
+}
+
+/* Cancel button (Continue Playing) - matches secondary variant */
+.swal2-cancel {
+  background-color: var(--text) !important;
+  color: var(--bg-dark) !important;
+  border: none !important;
+  border-radius: var(--radius-3xl) !important;
+  padding: var(--space-2) var(--space-4) !important;
+  font-size: var(--font-size-base) !important;
+  font-weight: var(--font-weight-semibold) !important;
+  text-transform: uppercase !important;
+  box-shadow:
+    var(--highlight-md) inset,
+    var(--shadow-md-y) inset !important;
+  transition: all var(--transition-medium) !important;
+  height: 3rem !important;
+  min-width: 120px !important;
+}
+
+.swal2-cancel:hover {
+  filter: brightness(1.1) !important;
+}
+
+.swal2-cancel:active {
+  box-shadow:
+    var(--highlight-md) inset,
+    var(--shadow-gray-light) inset !important;
+  transform: translateY(3px) !important;
+}
+
+.swal2-actions {
+  gap: var(--space-4) !important;
+  margin-top: var(--space-6) !important;
+}
+
+.animated-coin-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.animated-coin-amount {
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-semibold);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-175%, -50%);
+  z-index: 1;
+}
+
+.animated-coin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -50%);
+  width: 80%;
+  height: 80%;
+}
+
+.cash-out-modal-subtitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  margin-bottom: var(--space-4);
+  margin-bottom: 0;
+  color: var(--secondary);
+}
