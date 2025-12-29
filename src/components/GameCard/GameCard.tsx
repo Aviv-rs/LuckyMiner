@@ -1,8 +1,8 @@
 import styles from "./GameCard.module.css";
 import type { GameCard as GameCardType } from "../../types/game.types";
-import BombIcon from "../../assets/bomb_shadow.svg?react";
-import CrownIcon from "../../assets/crown_shadow.svg?react";
-import FlameEffect from "../../assets/flame_effect.svg?react";
+import BombIcon from "../../assets/graphics/bomb_shadow.svg?react";
+import CrownIcon from "../../assets/graphics/crown_shadow.svg?react";
+import FlameEffect from "../../assets/graphics/flame_effect.svg?react";
 
 export const GameCard = ({ gameCard, onClick }: { gameCard: GameCardType; onClick: () => void }) => {
   return (

@@ -1,5 +1,6 @@
 .app-logo {
-  font-weight: var(--font-weight-extrabold);
+  font-weight: var(--font-weight-black);
   text-transform: uppercase;
   text-align: center;
+  font-size: var(--font-size-xl);
 }
