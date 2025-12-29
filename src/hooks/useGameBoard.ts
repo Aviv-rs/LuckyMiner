@@ -73,6 +73,13 @@ export const useGameBoard = () => {
     return exposedCards.current.size * gameBoard.amountPerWin;
   }, [gameBoard, exposedCards]);
 
+  const nextPrizes = useMemo(() => {
+    if (!gameBoard) return [];
+    const remainingPrizesSum = maxPrize - balance;
+    const remainingPrizesCount = remainingPrizesSum / gameBoard.amountPerWin;
+    return Array.from({ length: remainingPrizesCount }, () => gameBoard.amountPerWin);
+  }, [balance, gameBoard, maxPrize]);
+
   const gameStatus = useMemo<GameStatus>(() => {
     if (!gameBoard) return "first-round";
     const exposedLosingCards = Array.from(exposedCards.current).filter((card) => !card.isWinning);
@@ -93,5 +100,6 @@ export const useGameBoard = () => {
     maxPrize,
     balance,
     gameStatus,
+    nextPrizes,
   };
 };

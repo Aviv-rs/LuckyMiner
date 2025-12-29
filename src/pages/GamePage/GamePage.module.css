@@ -7,9 +7,6 @@
 }
 
 .game-page-content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
   width: 100%;
   max-width: 400px;
   padding: 0 var(--space-4);
@@ -17,9 +14,82 @@
 
 .game-board-header {
   display: flex;
+  margin-bottom: var(--space-4);
 
   & > * {
     flex: 1;
+  }
+}
+
+.game-board-container {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 7px;
+    bottom: 7px;
+    right: 0;
+    height: 25px;
+    transform: translateY(100%);
+    background-color: var(--emerald);
+    border-radius: var(--radius-full);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 7px;
+    height: 25px;
+    transform: translateY(100%);
+    left: 0;
+    background-color: var(--emerald);
+    width: 7px;
+    border-radius: var(--radius-full);
+  }
+}
+
+.game-board-next-prizes {
+  position: relative;
+}
+
+.game-board-next-prizes-box {
+  flex: 1;
+  transform: translateY(-5px);
+
+  .game-board-next-prizes-box-content {
+    overflow: hidden;
+    justify-content: space-between;
+  }
+}
+
+.game-board-next-prize-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex-shrink: 0;
+  transform: translateX(0);
+  transition: transform var(--transition-medium);
+
+  &:not(.game-board-next-prize-item--first) {
+    margin-right: 30%;
+    opacity: 0.5;
+  }
+}
+
+.game-board-next-prize-item--first {
+  position: relative;
+  margin-right: 10%;
+  padding-right: var(--space-2);
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    width: 4px;
+    height: calc(100% + var(--space-1) * 2);
+    background-color: var(--emerald);
   }
 }
 
