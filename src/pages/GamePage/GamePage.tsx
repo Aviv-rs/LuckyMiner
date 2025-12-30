@@ -10,6 +10,7 @@ import { startViewTransition } from "../../utils/dom.utils";
 import { useSwalModal } from "../../hooks/useModal";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import coinAnimation from "../../assets/lotties/coin_animation.lottie?url";
+import CrownIcon from "../../assets/graphics/crown_shadow_no_pad.svg?react";
 
 export const GamePage = () => {
   const {
@@ -23,6 +24,7 @@ export const GamePage = () => {
     maxPrize,
     nextPrizes,
     balance,
+    exposedCards,
   } = useGameBoard();
 
   const { showModal } = useSwalModal();
@@ -120,6 +122,19 @@ export const GamePage = () => {
                 ))}
             </FramedBox>
           </div>
+          <FramedBox
+            title="Next Prize"
+            titleStyle="square"
+            className={styles["game-board-winning-cards-counter"]}
+            titleClassName={styles["game-board-winning-cards-counter-title"]}
+            contentClassName={styles["game-board-winning-cards-counter-content"]}
+          >
+            <span className={styles["game-board-winning-cards-counter-value"]}>
+              <CrownIcon className={styles["game-board-winning-cards-counter-icon"]} />
+              <strong>{Array.from(exposedCards.current).filter((card) => card.isWinning).length}</strong>/
+              {gameBoard.board.flat().filter((card) => card.isWinning).length}
+            </span>
+          </FramedBox>
           {gameStatus !== "first-round" && <div className={styles["game-board-footer"]}>{gameBoardFooter()}</div>}
         </div>
       )}

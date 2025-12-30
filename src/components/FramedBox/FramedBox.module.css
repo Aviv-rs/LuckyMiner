@@ -32,6 +32,20 @@
   width: fit-content;
   padding: var(--space-1) var(--space-7);
   transform: translateY(var(--border-width));
+
+  &.square {
+    border-radius: var(--radius-none);
+  }
+
+  &.small {
+    font-size: var(--font-size-xs);
+  }
+  &.medium {
+    font-size: var(--font-size-sm);
+  }
+  &.large {
+    font-size: var(--font-size-lg);
+  }
 }
 
 .framed-box-content {
