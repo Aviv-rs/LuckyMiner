@@ -12,6 +12,9 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import coinAnimation from "../../assets/lotties/coin_animation.lottie?url";
 import CrownIcon from "../../assets/graphics/crown_shadow_no_pad.svg?react";
 import { AnimatedCounter } from "../../components/AnimatedTextBox/AnimatedCounter";
+import { TotalCoinsHeader } from "../../components/TotalCoinsHeader/TotalCoinsHeader";
+import { EventBusEvents } from "../../constants/event-bus.enum";
+import { eventBus } from "../../utils/event-bus.utils";
 
 export const GamePage = () => {
   const {
@@ -57,6 +60,7 @@ export const GamePage = () => {
     const remainingPrize = maxPrize - balance;
     const result = await showCashOutModal(remainingPrize);
     if (result.isConfirmed) {
+      eventBus.emit(EventBusEvents.TOTAL_COINS_UPDATED, balance);
       startViewTransition(resetGameBoard);
     }
   };
@@ -70,6 +74,7 @@ export const GamePage = () => {
     switch (gameStatus) {
       case "cashed-out":
       case "lose":
+        eventBus.emit(EventBusEvents.TOTAL_COINS_RESET);
         return (
           <BaseButton fullWidth onClick={() => startViewTransition(resetGameBoard)}>
             Play Again
@@ -92,6 +97,7 @@ export const GamePage = () => {
     <div className={styles["game-page"]}>
       {loading && <div className="loader">Loading...</div>}
       {error && <div className="error">An error has occured, please try again later</div>}
+      <TotalCoinsHeader />
       {gameBoard && (
         <div className={styles["game-page-content"]}>
           <AppLogo />

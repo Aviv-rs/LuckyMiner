@@ -1,5 +1,5 @@
 import { BaseIcon, type BaseIconProps } from "../BaseIcon/BaseIcon";
-import { Colors } from "../../enums/colors.enum";
+import { Colors } from "../../constants/colors.constant";
 
 export const CoinIcon = ({
   size = "medium",

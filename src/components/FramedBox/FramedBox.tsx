@@ -4,7 +4,7 @@ interface FramedBoxProps {
   children: React.ReactNode;
   title?: string;
   titleSize?: "small" | "medium" | "large";
-  frameColor?: "green" | "white";
+  frameColor?: "green" | "white" | "gold";
   titleStyle?: "rounded" | "square";
   titleClassName?: string;
   contentFrameStyle?: "rounded" | "square";
