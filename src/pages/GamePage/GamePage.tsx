@@ -102,32 +102,30 @@ export const GamePage = () => {
               <CoinIcon /> {maxPrize}
             </FramedBox>
           </div>
-          <FramedBox className={styles["game-board-container"]} contentFrameStyle="square">
+          <FramedBox contentFrameStyle="square">
             <GameBoard gameBoard={gameBoard.board} setGameCardExposed={handleGameCardExposed} />
           </FramedBox>
-          <div className={styles["game-board-next-prizes"]}>
-            <FramedBox
-              className={styles["game-board-next-prizes-box"]}
-              contentClassName={styles["game-board-next-prizes-box-content"]}
-            >
-              {nextPrizes.length > 1 &&
-                nextPrizes.map((prize, index) => (
-                  <span
-                    className={`${styles["game-board-next-prize-item"]} ${index === 0 && styles["game-board-next-prize-item--first"]}`}
-                    style={{ transform: index === 0 ? "none" : `translateX(${index * 10}%)` }}
-                    key={index}
-                  >
-                    <CoinIcon /> {prize}
-                  </span>
-                ))}
-            </FramedBox>
-          </div>
+          <FramedBox
+            className={styles["game-board-next-prizes-box"]}
+            contentClassName={styles["game-board-next-prizes-box-content"]}
+          >
+            {nextPrizes.length > 1 &&
+              nextPrizes.map((prize, index) => (
+                <span
+                  className={`${styles["game-board-next-prize-item"]} ${index === 0 && styles["game-board-next-prize-item--first"]}`}
+                  style={{ transform: index === 0 ? "none" : `translateX(${index * 10}%)` }}
+                  key={index}
+                >
+                  <CoinIcon /> {prize}
+                </span>
+              ))}
+          </FramedBox>
+
           <FramedBox
             title="Next Prize"
             titleStyle="square"
             className={styles["game-board-winning-cards-counter"]}
             titleClassName={styles["game-board-winning-cards-counter-title"]}
-            contentClassName={styles["game-board-winning-cards-counter-content"]}
           >
             <span className={styles["game-board-winning-cards-counter-value"]}>
               <CrownIcon className={styles["game-board-winning-cards-counter-icon"]} />
