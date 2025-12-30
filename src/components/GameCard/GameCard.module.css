@@ -41,7 +41,7 @@
 }
 
 .game-card-winning {
-  animation: pop 0.6s ease-out forwards;
+  animation: pop-preserve-rotation 0.6s ease-out forwards;
 }
 
 .game-card-content-winning {

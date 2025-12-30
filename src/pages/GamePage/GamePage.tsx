@@ -11,6 +11,7 @@ import { useSwalModal } from "../../hooks/useModal";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import coinAnimation from "../../assets/lotties/coin_animation.lottie?url";
 import CrownIcon from "../../assets/graphics/crown_shadow_no_pad.svg?react";
+import { AnimatedCounter } from "../../components/AnimatedTextBox/AnimatedCounter";
 
 export const GamePage = () => {
   const {
@@ -96,10 +97,10 @@ export const GamePage = () => {
           <AppLogo />
           <div className={styles["game-board-header"]}>
             <FramedBox title="Balance">
-              <CoinIcon /> {balance}
+              <CoinIcon /> <AnimatedCounter countTo={balance} />
             </FramedBox>
             <FramedBox title="Max Prize" frameColor="white">
-              <CoinIcon /> {maxPrize}
+              <CoinIcon /> <AnimatedCounter countTo={maxPrize} />
             </FramedBox>
           </div>
           <FramedBox contentFrameStyle="square">

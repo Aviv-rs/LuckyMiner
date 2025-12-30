@@ -35,6 +35,25 @@
 
 @keyframes pop {
   0% {
+    transform: scale(1);
+    transform-origin: center;
+    z-index: 2;
+  }
+
+  50% {
+    transform: scale(1.2);
+    transform-origin: center;
+    z-index: 2;
+  }
+
+  100% {
+    transform: scale(1);
+    transform-origin: center;
+    z-index: 0;
+  }
+}
+@keyframes pop-preserve-rotation {
+  0% {
     transform: scale(1) rotateY(180deg);
     transform-origin: center;
     z-index: 2;

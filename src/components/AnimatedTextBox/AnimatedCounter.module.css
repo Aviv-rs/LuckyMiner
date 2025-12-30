@@ -1,0 +1,6 @@
+@import "../../styles/animations.css";
+
+.animated-counter-done {
+  transform: scale(1);
+  animation: pop 0.3s ease-out forwards;
+}
