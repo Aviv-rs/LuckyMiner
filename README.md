@@ -1,6 +1,6 @@
 # LuckyMiner
 
-A React + TypeScript card game application built with Vite, featuring an interactive game board where players reveal cards to win coins while avoiding bombs.
+A React + TypeScript card game application built with Vite, featuring an interactive game board where players reveal cards to win coins while avoiding bombs. Available at [https://aviv-rs.github.io/LuckyMiner](https://aviv-rs.github.io/LuckyMiner).
 
 ## Table of Contents
 
