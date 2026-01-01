@@ -1,9 +1,10 @@
-import { CircleDollarSign, RotateCcw } from "lucide-react";
+import { CircleDollarSign, Info, RotateCcw } from "lucide-react";
 import styles from "./BaseIcon.module.css";
 
 const iconMap = {
   coin: CircleDollarSign,
   retry: RotateCcw,
+  info: Info,
 };
 
 export interface BaseIconProps {
@@ -22,7 +23,7 @@ const sizeMap = {
 export const BaseIcon = ({
   icon,
   size = "medium",
-  fillColor: color = "currentColor",
+  fillColor: color = "",
   strokeColor: stroke = "currentColor",
 }: BaseIconProps) => {
   const IconComponent = iconMap[icon] || <></>;

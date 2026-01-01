@@ -2,7 +2,7 @@
   height: var(--app-header-height);
   display: flex;
   align-items: center;
-  justify-content: center;
+  padding: 0 var(--space-4);
   width: 100%;
   background-color: var(--app-header-background-color);
   position: fixed;
@@ -10,4 +10,8 @@
   left: 0;
   right: 0;
   z-index: var(--app-header-z-index);
+}
+
+.total-coins-wrapper {
+  margin: 0 auto;
 }
