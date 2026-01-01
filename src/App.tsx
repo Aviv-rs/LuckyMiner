@@ -1,8 +1,15 @@
 import { GamePage } from "./pages/GamePage/GamePage";
+import { AppHeader } from "./components/AppHeader/AppHeader";
+import styles from "./App.module.css";
+
 export default function App() {
   return (
     <>
-      <GamePage />
+      <AppHeader />
+
+      <main className={styles["app-main-content"]}>
+        <GamePage />
+      </main>
     </>
   );
 }

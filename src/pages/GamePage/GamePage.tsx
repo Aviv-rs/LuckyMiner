@@ -12,7 +12,6 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import coinAnimation from "../../assets/lotties/coin_animation.lottie?url";
 import CrownIcon from "../../assets/graphics/crown_shadow_no_pad.svg?react";
 import { AnimatedCounter } from "../../components/AnimatedTextBox/AnimatedCounter";
-import { TotalCoinsHeader } from "../../components/TotalCoinsHeader/TotalCoinsHeader";
 import { EventBusEvents } from "../../constants/event-bus.enum";
 import { eventBus } from "../../utils/event-bus.utils";
 
@@ -97,7 +96,6 @@ export const GamePage = () => {
     <div className={styles["game-page"]}>
       {loading && <div className="loader">Loading...</div>}
       {error && <div className="error">An error has occured, please try again later</div>}
-      <TotalCoinsHeader />
       {gameBoard && (
         <div className={styles["game-page-content"]}>
           <AppLogo />

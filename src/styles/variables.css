@@ -110,6 +110,11 @@
   --transition-fast: 0.1s ease;
   --transition-medium: 0.2s ease;
   --transition-slow: 0.3s ease;
+
+  /* App Header */
+  --app-header-height: 100px;
+  --app-header-background-color: var(--bg);
+  --app-header-z-index: 100;
 }
 
 body.light {
