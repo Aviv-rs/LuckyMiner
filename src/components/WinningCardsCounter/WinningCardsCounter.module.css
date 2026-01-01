@@ -1,0 +1,23 @@
+.winning-cards-counter {
+  transform: translateY(calc(var(--space-2) * -1));
+  width: fit-content;
+  position: relative;
+  background-color: var(--emerald);
+  border-radius: var(--radius-none) var(--radius-none) var(--radius-lg) var(--radius-lg);
+
+  .winning-cards-counter-title {
+    padding: var(--space-1) var(--space-3);
+    padding-top: 0;
+  }
+}
+
+.winning-cards-counter-value {
+  display: flex;
+  align-items: center;
+  gap: var(--space-05);
+}
+
+.winning-cards-counter-icon {
+  width: var(--font-size-2xl);
+  height: var(--font-size-2xl);
+}

@@ -1,0 +1,47 @@
+@import "../../styles/animations.css";
+
+.next-prizes-box {
+  flex: 1;
+  transform: translateY(-6px);
+  background: var(--emerald);
+  border-bottom-right-radius: var(--radius-3xl);
+
+  .next-prizes-box-content {
+    overflow: hidden;
+    justify-content: space-between;
+    border-radius: var(--radius-3xl);
+  }
+}
+
+.next-prize-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex-shrink: 0;
+  transform: translateX(0);
+  transition: transform var(--transition-medium);
+
+  &:not(.next-prize-item-first) {
+    margin-right: 30%;
+    opacity: 0.5;
+  }
+}
+
+.next-prize-item-won {
+  animation: pop 0.3s ease-out forwards;
+}
+
+.next-prize-item-first {
+  position: relative;
+  margin-right: 10%;
+  padding-right: var(--space-2);
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    width: 4px;
+    height: calc(100% + var(--space-1) * 2);
+    background-color: var(--emerald);
+  }
+}

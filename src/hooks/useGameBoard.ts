@@ -90,6 +90,15 @@ export const useGameBoard = () => {
     else return "first-round";
   }, [gameBoard, exposedCards, balance, nextPrizes]);
 
+  const exposedWinningCardsCount = useMemo(() => {
+    return Array.from(exposedCards.current).filter((card) => card.isWinning).length;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [exposedCards, gameBoard]); // gameBoard included in deps to trigger recalculation when board state changes
+
+  const totalWinningCards = useMemo(() => {
+    return gameBoard?.board.flat().filter((card) => card.isWinning).length ?? 0;
+  }, [gameBoard]);
+
   return {
     gameBoard,
     loading,
@@ -102,5 +111,7 @@ export const useGameBoard = () => {
     balance,
     gameStatus,
     nextPrizes,
+    exposedWinningCardsCount,
+    totalWinningCards,
   };
 };

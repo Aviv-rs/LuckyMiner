@@ -10,10 +10,11 @@ import { startViewTransition } from "../../utils/dom.utils";
 import { useSwalModal } from "../../hooks/useModal";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import coinAnimation from "../../assets/lotties/coin_animation.lottie?url";
-import CrownIcon from "../../assets/graphics/crown_shadow_no_pad.svg?react";
 import { AnimatedCounter } from "../../components/AnimatedTextBox/AnimatedCounter";
 import { EventBusEvents } from "../../constants/event-bus.enum";
 import { eventBus } from "../../utils/event-bus.utils";
+import { NextPrizesBox } from "../../components/NextPrizesBox/NextPrizesBox";
+import { WinningCardsCounter } from "../../components/WinningCardsCounter/WinningCardsCounter";
 
 export const GamePage = () => {
   const {
@@ -27,7 +28,8 @@ export const GamePage = () => {
     maxPrize,
     nextPrizes,
     balance,
-    exposedCards,
+    exposedWinningCardsCount,
+    totalWinningCards,
   } = useGameBoard();
 
   const { showModal } = useSwalModal();
@@ -127,39 +129,11 @@ export const GamePage = () => {
           <FramedBox contentFrameStyle="square">
             <GameBoard gameBoard={gameBoard.board} setGameCardExposed={handleGameCardExposed} />
           </FramedBox>
-          <FramedBox
-            className={styles["game-board-next-prizes-box"]}
-            contentClassName={styles["game-board-next-prizes-box-content"]}
-          >
-            {nextPrizes && nextPrizes.length > 0 ? (
-              nextPrizes.map((prize, index) => (
-                <span
-                  className={`${styles["game-board-next-prize-item"]} ${index === 0 && styles["game-board-next-prize-item--first"]}`}
-                  style={{ transform: index === 0 ? "none" : `translateX(${index * 10}%)` }}
-                  key={index}
-                >
-                  <CoinIcon /> {prize}
-                </span>
-              ))
-            ) : (
-              <span className={styles["game-board-next-prize-item-won"]}>
-                You won! Cash out your winnings to continue playing.
-              </span>
-            )}
-          </FramedBox>
-
-          <FramedBox
-            title="Next Prize"
-            titleStyle="square"
-            className={styles["game-board-winning-cards-counter"]}
-            titleClassName={styles["game-board-winning-cards-counter-title"]}
-          >
-            <span className={styles["game-board-winning-cards-counter-value"]}>
-              <CrownIcon className={styles["game-board-winning-cards-counter-icon"]} />
-              <strong>{Array.from(exposedCards.current).filter((card) => card.isWinning).length}</strong>/
-              {gameBoard.board.flat().filter((card) => card.isWinning).length}
-            </span>
-          </FramedBox>
+          <NextPrizesBox nextPrizes={nextPrizes} />
+          <WinningCardsCounter
+            exposedWinningCardsCount={exposedWinningCardsCount}
+            totalWinningCards={totalWinningCards}
+          />
           {gameStatus !== "first-round" && <div className={styles["game-board-footer"]}>{gameBoardFooter()}</div>}
         </div>
       )}
