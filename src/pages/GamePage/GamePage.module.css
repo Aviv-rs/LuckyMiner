@@ -1,3 +1,5 @@
+@import "../../styles/animations.css";
+
 .game-page {
   min-height: 100vh;
   padding-top: var(--space-8);
@@ -46,6 +48,10 @@
     margin-right: 30%;
     opacity: 0.5;
   }
+}
+
+.game-board-next-prize-item-won {
+  animation: pop 0.3s ease-out forwards;
 }
 
 .game-board-next-prize-item--first {

@@ -85,9 +85,10 @@ export const useGameBoard = () => {
     const exposedLosingCards = Array.from(exposedCards.current).filter((card) => !card.isWinning);
     if (exposedLosingCards.length > 0) return "lose";
     else if (balance === 0 && exposedCards.current.size > 0) return "cashed-out";
+    else if (nextPrizes.length === 0) return "won";
     else if (exposedCards.current.size > 0) return "in-progress";
     else return "first-round";
-  }, [gameBoard, exposedCards, balance]);
+  }, [gameBoard, exposedCards, balance, nextPrizes]);
 
   return {
     gameBoard,

@@ -19,4 +19,4 @@ export type Game = {
   amountPerWin: number;
 };
 
-export type GameStatus = "cashed-out" | "lose" | "in-progress" | "first-round";
+export type GameStatus = "cashed-out" | "lose" | "in-progress" | "first-round" | "won";

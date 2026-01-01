@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useGameBoard } from "../../hooks/useGameBoard";
 import styles from "./GamePage.module.css";
 import { AppLogo } from "../../components/AppLogo/AppLogo";
@@ -31,6 +31,18 @@ export const GamePage = () => {
   } = useGameBoard();
 
   const { showModal } = useSwalModal();
+  const previousGameStatusRef = useRef<typeof gameStatus>(gameStatus);
+
+  useEffect(() => {
+    if (
+      (gameStatus === "cashed-out" || gameStatus === "lose") &&
+      previousGameStatusRef.current !== "cashed-out" &&
+      previousGameStatusRef.current !== "lose"
+    ) {
+      eventBus.emit(EventBusEvents.TOTAL_COINS_RESET);
+    }
+    previousGameStatusRef.current = gameStatus;
+  }, [gameStatus]);
 
   const showCashOutModal = useCallback(
     (remainingPrize: number) => {
@@ -55,6 +67,11 @@ export const GamePage = () => {
   );
 
   const handleCashOut = async () => {
+    if (gameStatus === "won") {
+      eventBus.emit(EventBusEvents.TOTAL_COINS_UPDATED, balance);
+      startViewTransition(resetGameBoard);
+      return;
+    }
     if (gameStatus !== "in-progress") return;
     const remainingPrize = maxPrize - balance;
     const result = await showCashOutModal(remainingPrize);
@@ -65,7 +82,7 @@ export const GamePage = () => {
   };
 
   const handleGameCardExposed = (cardId: number) => {
-    if (gameStatus === "lose" || gameStatus === "cashed-out") return;
+    if (gameStatus === "lose" || gameStatus === "cashed-out" || gameStatus === "won") return;
     setGameCardExposed(cardId);
   };
 
@@ -73,13 +90,13 @@ export const GamePage = () => {
     switch (gameStatus) {
       case "cashed-out":
       case "lose":
-        eventBus.emit(EventBusEvents.TOTAL_COINS_RESET);
         return (
           <BaseButton fullWidth onClick={() => startViewTransition(resetGameBoard)}>
             Play Again
           </BaseButton>
         );
       case "in-progress":
+      case "won":
         return (
           <BaseButton variant="secondary" fullWidth onClick={handleCashOut}>
             Cash Out
@@ -114,7 +131,7 @@ export const GamePage = () => {
             className={styles["game-board-next-prizes-box"]}
             contentClassName={styles["game-board-next-prizes-box-content"]}
           >
-            {nextPrizes.length > 1 &&
+            {nextPrizes && nextPrizes.length > 0 ? (
               nextPrizes.map((prize, index) => (
                 <span
                   className={`${styles["game-board-next-prize-item"]} ${index === 0 && styles["game-board-next-prize-item--first"]}`}
@@ -123,7 +140,12 @@ export const GamePage = () => {
                 >
                   <CoinIcon /> {prize}
                 </span>
-              ))}
+              ))
+            ) : (
+              <span className={styles["game-board-next-prize-item-won"]}>
+                You won! Cash out your winnings to continue playing.
+              </span>
+            )}
           </FramedBox>
 
           <FramedBox
